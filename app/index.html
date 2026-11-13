@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pixel Rétro — Casse-briques</title>
+  <title>BRIX | Neon Breaker</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,12 +28,22 @@
       </div>
     </div>
 
+    <section class="hud" style="grid-template-columns: 1fr; margin-top: 10px" aria-label="Tableau d'honneur">
+      <div><span class="etiquette">TABLEAU D'HONNEUR</span><span id="honneur" style="white-space: pre-line">AUCUN RECORD</span></div>
+    </section>
+
     <footer class="pied">
       <span>© Pixel Rétro</span>
-      <span id="version">v1.0</span>
+      <span id="version">v1.2</span>
     </footer>
   </main>
 
   <script src="game.js"></script>
+    <script>
+    fetch("records/top.txt", { cache: "no-store" })
+      .then(function (reponse) { if (reponse.ok) return reponse.text(); })
+      .then(function (texte) { if (texte) document.getElementById("honneur").textContent = texte; });
+  </script>
+  
 </body>
 </html>
