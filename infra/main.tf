@@ -43,4 +43,10 @@ resource "docker_container" "borne" {
     source      = "${path.module}/../app/game.js"
     source_hash = filesha256("${path.module}/../app/game.js")
   }
+
+  # Defi : le nom de la borne, ecrit par Terraform (aucun fichier source).
+  upload {
+    file    = "/usr/share/nginx/html/borne.txt"
+    content = "BORNE ${upper(each.key)}"
+  }
 }
